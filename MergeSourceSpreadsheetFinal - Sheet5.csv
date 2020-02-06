@@ -1,0 +1,210 @@
+Country ,Freedom Status,Aggregate Score,,Country,ROL Score,,Country,Hunger Score,,HungerScore,ROJ Score
+Abkhazia ,Partly Free,41,#N/A,Austria,0.82,#N/A,Afghanistan,35.4,,#N/A,#N/A
+Afghanistan,Not Free,26,#N/A,Bahamas,0.61,35.4,Albania,13.2,,35.4,#N/A
+Albania,Partly Free,68,#N/A,Bangladesh,0.41,13.2,Algeria,8.7,,13.2,#N/A
+Algeria,Not Free,35,#N/A,Barbados,0.65,8.7,Angola,32.6,,8.7,#N/A
+Andorra,Free,96,#N/A,Belarus,0.52,#N/A,Argentina,5,,#N/A,#N/A
+Angola,Not Free,26,#N/A,Belgium,0.79,32.6,Armenia,11.2,,32.6,#N/A
+Antigua and Barbuda,Free,83,#N/A,Belize,0.48,#N/A,Azerbaijan,10,,#N/A,#N/A
+Argentina,Free,83,#N/A,Benin,0.5,5,Bangladesh,27.3,,5,#N/A
+Armenia,Partly Free,45,#N/A,Bolivia,0.38,11.2,Belarus,5,,11.2,#N/A
+Australia,Free,98,#N/A,Bosnia and Herzegovina,0.53,#N/A,Benin,21.8,,#N/A,#N/A
+Austria,Free,94,0.82,Botswana,0.59,#N/A,Bhutan,-1,,#N/A,0.8
+Azerbaijan,Not Free,12,#N/A,Brazil,0.53,10,Bolivia,16.9,,10,#N/A
+Bahamas,Free,91,0.61,Bulgaria,0.54,#N/A,Bosnia & Herzegovina,5,,#N/A,0.62
+Bahrain,Not Free,12,#N/A,Burkina Faso,0.5,#N/A,Botswana,23.1,,#N/A,#N/A
+Bangladesh,Partly Free,45,0.41,Cambodia,0.32,27.3,Brazil,5,,27.3,0.34
+Barbados,Free,96,0.65,Cameroon,0.37,#N/A,Bulgaria,8.5,,#N/A,0.58
+Belarus,Not Free,21,0.52,Canada,0.81,5,Burkina Faso,31.8,,5,0.48
+Belgium,Free,95,0.79,Chile,0.68,#N/A,Burundi,-1,,#N/A,0.72
+Belize,Free,86,0.48,China,0.49,#N/A,Cambodia,22.6,,#N/A,0.34
+Benin,Free,82,0.5,Colombia,0.5,21.8,Cameroon,24.2,,21.8,0.44
+Bhutan,Partly Free,55,#N/A,"Congo, Dem. Rep.",0.33,-1,Central African Republic,46.9,,-1,#N/A
+Bolivia,Partly Free,67,0.38,Costa Rica,0.69,16.9,Chad,46.4,,16.9,0.21
+Bosnia and Herzegovina,Partly Free,55,0.53,Cote d'Ivoire,0.46,#N/A,Chile,5,,#N/A,0.5
+Botswana,Free,72,0.59,Croatia,0.61,23.1,China,8.6,,23.1,0.57
+Brazil,Free,78,0.53,Czech Republic,0.73,5,Colombia,8.8,,5,0.35
+Brunei,Not Free,28,#N/A,Denmark,0.9,#N/A,"Congo, Dem. Rep.",-1,,#N/A,#N/A
+Bulgaria,Free,80,0.54,Dominica,0.59,8.5,"Congo, Rep.",26.6,,8.5,0.45
+Burkina Faso,Partly Free,60,0.5,Dominican Republic,0.46,31.8,Costa Rica,5,,31.8,0.47
+Burundi,Not Free,18,#N/A,Ecuador,0.48,-1,Croatia,5,,-1,#N/A
+Cambodia,Not Free,30,0.32,Egypt,0.36,22.6,Cuba,5,,22.6,0.25
+Cameroon,Not Free,22,0.37,El Salvador,0.48,24.2,Côte d'Ivoire,26.3,,24.2,0.28
+Canada,Free,99,0.81,Estonia,0.81,#N/A,Djibouti,33.2,,#N/A,0.73
+Cape Verde,Free,90,#N/A,Ethiopia,0.39,#N/A,Dominican Republic,10.8,,#N/A,#N/A
+Central African Republic,Not Free,9,#N/A,Finland,0.87,46.9,Ecuador,14,,46.9,#N/A
+Chad,Not Free,18,#N/A,France,0.73,46.4,"Egypt, Arab Rep.",13.5,,46.4,#N/A
+Chile,Free,94,0.68,Georgia,0.61,5,El Salvador,11.1,,5,0.57
+China,Not Free,14,0.49,Germany,0.84,8.6,Eritrea,-1,,8.6,0.47
+Colombia,Partly Free,65,0.5,Ghana,0.58,8.8,Estonia,5,,8.8,0.33
+Comoros,Partly Free,55,#N/A,Greece,0.62,#N/A,Ethiopia,33.9,,#N/A,#N/A
+"Congo, Democratic Republic of (Kinshasa)",Not Free,17,#N/A,Grenada,0.6,#N/A,Fiji,8.7,,#N/A,#N/A
+"Congo, Republic of (Brazzaville)",Not Free,21,#N/A,Guatemala,0.46,#N/A,Gabon,12.5,,#N/A,#N/A
+Costa Rica,Free,91,0.69,Guinea,0.44,5,"Gambia, The",21.5,,5,0.55
+Crimea *,Not Free,9,#N/A,Guyana,0.5,#N/A,Georgia,8.5,,#N/A,#N/A
+Croatia,Free,86,0.61,Honduras,0.4,5,Ghana,15.5,,5,0.51
+Cuba,Not Free,14,#N/A,"Hong Kong SAR, China",0.77,5,Guatemala,21.1,,5,#N/A
+Cyprus,Free,94,#N/A,Hungary,0.53,#N/A,Guinea,28.8,,#N/A,#N/A
+Czech Republic,Free,93,0.73,India,0.51,#N/A,Guinea-Bissau,30.3,,#N/A,0.7
+Côte d'Ivoire,Partly Free,51,#N/A,Indonesia,0.52,26.3,Guyana,14.4,,26.3,#N/A
+Denmark,Free,97,0.9,Iran,0.45,#N/A,Haiti,37.3,,#N/A,0.83
+Djibouti,Not Free,26,#N/A,Italy,0.65,33.2,Honduras,13.4,,33.2,#N/A
+Dominica,Free,93,0.59,Jamaica,0.56,#N/A,India,29,,#N/A,0.55
+Dominican Republic,Partly Free,67,0.46,Japan,0.78,10.8,Indonesia,22.1,,10.8,0.34
+Ecuador,Partly Free,60,0.48,Jordan,0.57,14,"Iran, Islamic Rep.",6.8,,14,0.35
+Egypt,Not Free,26,0.36,Kazakhstan,0.52,#N/A,Iraq,22.2,,#N/A,0.41
+El Salvador,Free,70,0.48,Kenya,0.45,11.1,Jamaica,8.1,,11.1,0.29
+Equatorial Guinea,Not Free,7,#N/A,Kyrgyzstan,0.48,#N/A,Jordan,5.8,,#N/A,#N/A
+Eritrea,Not Free,3,#N/A,Lebanon,0.47,-1,Kazakhstan,8,,-1,#N/A
+Estonia,Free,94,0.81,Liberia,0.46,5,Kenya,24,,5,0.71
+Eswatini,Not Free,16,#N/A,"Macedonia, FYR",0.54,#N/A,Kuwait,5,,#N/A,#N/A
+Ethiopia,Not Free,12,0.39,Madagascar,0.43,33.9,Kyrgyz Republic,9.4,,33.9,0.33
+Fiji,Partly Free,59,#N/A,Malawi,0.51,8.7,Lao PDR,28.5,,8.7,#N/A
+Finland,Free,100,0.87,Malaysia,0.55,#N/A,Latvia,5,,#N/A,0.84
+France,Free,90,0.73,Mali,0.45,#N/A,Lebanon,6.4,,#N/A,0.63
+Gabon,Not Free,23,#N/A,Mauritania,0.35,12.5,Lesotho,23.5,,12.5,#N/A
+"Gambia, The",Partly Free,41,#N/A,Mauritius,0.61,21.5,Liberia,-1,,21.5,#N/A
+Gaza Strip *,Not Free,12,#N/A,Mexico,0.45,#N/A,Libya,-1,,#N/A,#N/A
+Georgia,Partly Free,64,0.61,Moldova,0.49,8.5,Lithuania,5,,8.5,0.52
+Germany,Free,94,0.84,Mongolia,0.55,#N/A,"Macedonia, FYR",5.9,,#N/A,0.78
+Ghana,Free,83,0.58,Morocco,0.5,15.5,Madagascar,36.3,,15.5,0.49
+Greece,Free,85,0.62,Mozambique,0.43,#N/A,Malawi,27.3,,#N/A,0.51
+Grenada,Free,88,0.6,Myanmar,0.42,#N/A,Malaysia,10.3,,#N/A,0.5
+Guatemala,Partly Free,56,0.46,Namibia,0.62,21.1,Mali,29.6,,21.1,0.32
+Guinea,Partly Free,41,0.44,Nepal,0.53,28.8,Mauritania,22.6,,28.8,0.31
+Guinea-Bissau,Partly Free,41,#N/A,Netherlands,0.84,30.3,Mexico,7.3,,30.3,#N/A
+Guyana,Free,74,0.5,New Zealand,0.82,14.4,Moldova,9.1,,14.4,0.38
+Haiti,Partly Free,41,#N/A,Nicaragua,0.4,37.3,Mongolia,14.7,,37.3,#N/A
+Honduras,Partly Free,46,0.4,Niger,0.44,13.4,Montenegro,5,,13.4,0.26
+Hong Kong *,Partly Free,59,0.77,Nigeria,0.43,#N/A,Morocco,9.5,,#N/A,0.71
+Hungary,Free,72,0.53,Norway,0.89,#N/A,Mozambique,32.5,,#N/A,0.48
+Iceland,Free,95,#N/A,Pakistan,0.39,#N/A,Myanmar,23.5,,#N/A,#N/A
+India,Free,77,0.51,Panama,0.52,29,Namibia,31.8,,29,0.4
+Indian Kashmir *,Partly Free,49,#N/A,Peru,0.51,#N/A,Nepal,22.2,,#N/A,#N/A
+Indonesia,Partly Free,64,0.52,Philippines,0.47,22.1,Nicaragua,13.6,,22.1,0.37
+Iran,Not Free,18,0.45,Poland,0.66,#N/A,Niger,34.5,,#N/A,0.42
+Iraq,Not Free,31,#N/A,Portugal,0.71,22.2,Nigeria,32.8,,22.2,#N/A
+Ireland,Free,96,#N/A,Republic of Korea,0.73,#N/A,North Korea,28.8,,#N/A,#N/A
+Israel,Free,79,#N/A,Romania,0.64,#N/A,Oman,-1,,#N/A,#N/A
+Italy,Free,89,0.65,Russia,0.47,#N/A,Pakistan,33.9,,#N/A,0.64
+Jamaica,Free,77,0.56,Rwanda,0.61,8.1,Panama,9.6,,8.1,0.5
+Japan,Free,96,0.78,Senegal,0.55,#N/A,Papua New Guinea,-1,,#N/A,0.74
+Jordan,Partly Free,37,0.57,Serbia,0.5,5.8,Paraguay,10.5,,5.8,0.58
+Kazakhstan,Not Free,22,0.52,Sierra Leone,0.45,8,Peru,9.1,,8,0.44
+Kenya,Partly Free,48,0.45,Singapore,0.8,24,Philippines,20.1,,24,0.38
+Kiribati,Free,93,#N/A,Slovenia,0.67,#N/A,Qatar,-1,,#N/A,#N/A
+Kosovo,Partly Free,52,#N/A,South Africa,0.58,#N/A,Romania,5.3,,#N/A,#N/A
+Kuwait,Partly Free,36,#N/A,Spain,0.71,5,Russian Federation,6.6,,5,#N/A
+Kyrgyzstan,Partly Free,37,0.48,Sri Lanka,0.52,#N/A,Rwanda,30.3,,#N/A,0.31
+Laos,Not Free,12,#N/A,St. Kitts and Nevis,0.65,#N/A,Saudi Arabia,5.1,,#N/A,#N/A
+Latvia,Free,87,#N/A,St. Lucia,0.61,5,Senegal,23.2,,5,#N/A
+Lebanon,Partly Free,43,0.47,St. Vincent and the Grenadines,0.62,6.4,Serbia,7.1,,6.4,0.38
+Lesotho,Partly Free,64,#N/A,Suriname,0.51,23.5,Sierra Leone,38.9,,23.5,#N/A
+Liberia,Partly Free,62,0.46,Sweden,0.85,-1,Slovak Republic,5.2,,-1,0.32
+Libya,Not Free,9,#N/A,Tanzania,0.47,-1,Somalia,-1,,-1,#N/A
+Liechtenstein,Free,90,#N/A,Thailand,0.5,#N/A,South Africa,12.4,,#N/A,#N/A
+Lithuania,Free,91,#N/A,Togo,0.45,5,South Sudan,-1,,5,#N/A
+Luxembourg,Free,98,#N/A,Trinidad and Tobago,0.54,#N/A,Sri Lanka,25.5,,#N/A,#N/A
+Macedonia,Partly Free,58,#N/A,Tunisia,0.53,#N/A,Sudan,-1,,#N/A,#N/A
+Madagascar,Partly Free,56,0.43,Turkey,0.42,36.3,Suriname,10.4,,36.3,0.34
+Malawi,Partly Free,63,0.51,Uganda,0.4,27.3,Swaziland,26,,27.3,0.45
+Malaysia,Partly Free,45,0.55,Ukraine,0.5,10.3,Syrian Arab Republic,-1,,10.3,0.54
+Maldives,Partly Free,35,#N/A,United Arab Emirates,0.64,#N/A,Tajikistan,30.3,,#N/A,#N/A
+Mali,Partly Free,44,0.45,United Kingdom,0.8,29.6,Tanzania,28.7,,29.6,0.28
+Malta,Free,92,#N/A,United States,0.71,#N/A,Thailand,11.9,,#N/A,#N/A
+Marshall Islands,Free,92,#N/A,Uruguay,0.71,#N/A,Timor-Leste,40.7,,#N/A,#N/A
+Mauritania,Not Free,30,0.35,Uzbekistan,0.46,22.6,Togo,23,,22.6,0.3
+Mauritius,Free,89,0.61,Venezuela,0.28,#N/A,Trinidad & Tobago,8.3,,#N/A,0.53
+Mexico,Partly Free,62,0.45,Vietnam,0.49,7.3,Tunisia,5.6,,7.3,0.29
+Micronesia,Free,93,#N/A,Zambia,0.47,#N/A,Turkey,5.1,,#N/A,#N/A
+Moldova,Partly Free,61,0.49,Zimbabwe,0.4,9.1,Turkmenistan,12.9,,9.1,0.34
+Monaco,Free,82,#N/A,,,#N/A,Uganda,27.6,,#N/A,#N/A
+Mongolia,Free,85,0.55,,,14.7,Ukraine,5,,14.7,0.5
+Montenegro,Partly Free,67,#N/A,,,5,Uruguay,5.7,,5,#N/A
+Morocco,Partly Free,39,0.5,,,9.5,Uzbekistan,13.3,,9.5,0.38
+Mozambique,Partly Free,52,0.43,,,32.5,"Venezuela, RB",7,,32.5,0.34
+Myanmar,Partly Free,31,0.42,,,23.5,Vietnam,14.7,,23.5,0.29
+Nagorno-Karabakh *,Partly Free,30,#N/A,,,#N/A,"Yemen, Rep.",34.2,,#N/A,#N/A
+Namibia,Free,77,0.62,,,31.8,Zambia,41.1,,31.8,0.54
+Nauru,Free,81,#N/A,,,#N/A,Zimbabwe,30.8,,#N/A,#N/A
+Nepal,Partly Free,55,0.53,,,22.2,,,,,0.44
+Netherlands,Free,99,0.84,,,#N/A,,,,,0.76
+New Zealand,Free,98,0.82,,,#N/A,,,,,0.72
+Nicaragua,Partly Free,44,0.4,,,13.6,,,,,0.28
+Niger,Partly Free,49,0.44,,,34.5,,,,,0.34
+Nigeria,Partly Free,50,0.43,,,32.8,,,,,0.43
+North Korea,Not Free,3,#N/A,,,28.8,,,,,#N/A
+Northern Cyprus *,Free,81,#N/A,,,#N/A,,,,,#N/A
+Norway,Free,100,0.89,,,#N/A,,,,,0.83
+Oman,Not Free,23,#N/A,,,-1,,,,,#N/A
+Pakistan,Partly Free,43,0.39,,,33.9,,,,,0.35
+Pakistani Kashmir *,Not Free,28,#N/A,,,#N/A,,,,,#N/A
+Palau,Free,92,#N/A,,,#N/A,,,,,#N/A
+Panama,Free,83,0.52,,,9.6,,,,,0.31
+Papua New Guinea,Partly Free,63,#N/A,,,-1,,,,,#N/A
+Paraguay,Partly Free,64,#N/A,,,10.5,,,,,#N/A
+Peru,Free,73,0.51,,,9.1,,,,,0.33
+Philippines,Partly Free,62,0.47,,,20.1,,,,,0.31
+Poland,Free,85,0.66,,,#N/A,,,,,0.61
+Portugal,Free,97,0.71,,,#N/A,,,,,0.6
+Qatar,Not Free,24,#N/A,,,-1,,,,,#N/A
+Romania,Free,84,0.64,,,5.3,,,,,0.57
+Russia,Not Free,20,0.47,,,#N/A,,,,,0.34
+Rwanda,Not Free,23,0.61,,,30.3,,,,,0.55
+Samoa,Free,80,#N/A,,,#N/A,,,,,#N/A
+San Marino,Free,97,#N/A,,,#N/A,,,,,#N/A
+Saudi Arabia,Not Free,7,#N/A,,,5.1,,,,,#N/A
+Senegal,Free,75,0.55,,,23.2,,,,,0.45
+Serbia,Free,73,0.5,,,7.1,,,,,0.38
+Seychelles,Partly Free,71,#N/A,,,#N/A,,,,,#N/A
+Sierra Leone,Partly Free,66,0.45,,,38.9,,,,,0.36
+Singapore,Partly Free,52,0.8,,,#N/A,,,,,0.78
+Slovakia,Free,89,#N/A,,,#N/A,,,,,#N/A
+Slovenia,Free,93,0.67,,,#N/A,,,,,0.55
+Solomon Islands,Free,72,#N/A,,,#N/A,,,,,#N/A
+Somalia,Not Free,7,#N/A,,,-1,,,,,#N/A
+Somaliland *,Partly Free,44,#N/A,,,#N/A,,,,,#N/A
+South Africa,Free,78,0.58,,,12.4,,,,,0.52
+South Korea,Free,84,#N/A,,,#N/A,,,,,#N/A
+South Ossetia *,Not Free,10,#N/A,,,#N/A,,,,,#N/A
+South Sudan,Not Free,2,#N/A,,,-1,,,,,#N/A
+Spain,Free,94,0.71,,,#N/A,,,,,0.66
+Sri Lanka,Partly Free,55,0.52,,,25.5,,,,,0.45
+St. Kitts and Nevis,Free,89,0.65,,,#N/A,,,,,0.57
+St. Lucia,Free,91,0.61,,,#N/A,,,,,0.57
+St. Vincent and Grenadines,Free,90,#N/A,,,#N/A,,,,,#N/A
+Sudan,Not Free,8,#N/A,,,-1,,,,,#N/A
+Suriname,Free,78,0.51,,,10.4,,,,,0.53
+Sweden,Free,100,0.85,,,#N/A,,,,,0.81
+Switzerland,Free,96,#N/A,,,#N/A,,,,,#N/A
+Syria,Not Free,-1,#N/A,,,#N/A,,,,,#N/A
+São Tomé and Príncipe,Free,82,#N/A,,,#N/A,,,,,#N/A
+Taiwan,Free,93,#N/A,,,#N/A,,,,,#N/A
+Tajikistan,Not Free,11,#N/A,,,30.3,,,,,#N/A
+Tanzania,Partly Free,52,0.47,,,28.7,,,,,0.38
+Thailand,Not Free,31,0.5,,,11.9,,,,,0.42
+Tibet *,Not Free,1,#N/A,,,#N/A,,,,,#N/A
+Timor-Leste,Free,69,#N/A,,,40.7,,,,,#N/A
+Togo,Partly Free,47,0.45,,,23,,,,,0.36
+Tonga,Free,75,#N/A,,,#N/A,,,,,#N/A
+Transnistria *,Not Free,24,#N/A,,,#N/A,,,,,#N/A
+Trinidad and Tobago,Free,81,0.54,,,#N/A,,,,,0.35
+Tunisia,Free,70,0.53,,,5.6,,,,,0.43
+Turkey,Not Free,32,0.42,,,5.1,,,,,0.38
+Turkmenistan,Not Free,4,#N/A,,,12.9,,,,,#N/A
+Tuvalu,Free,94,#N/A,,,#N/A,,,,,#N/A
+Uganda,Partly Free,37,0.4,,,27.6,,,,,0.33
+Ukraine,Partly Free,62,0.5,,,5,,,,,0.37
+United Arab Emirates,Not Free,17,0.64,,,#N/A,,,,,0.67
+United Kingdom,Free,94,0.8,,,#N/A,,,,,0.75
+United States,Free,86,0.71,,,#N/A,,,,,0.63
+Uruguay,Free,98,0.71,,,5.7,,,,,0.54
+Uzbekistan,Not Free,7,0.46,,,13.3,,,,,0.44
+Vanuatu,Free,81,#N/A,,,#N/A,,,,,#N/A
+Venezuela,Not Free,26,0.28,,,#N/A,,,,,0.14
+Vietnam,Not Free,20,0.49,,,14.7,,,,,0.46
+West Bank *,Not Free,28,#N/A,,,#N/A,,,,,#N/A
+Western Sahara *,Not Free,4,#N/A,,,#N/A,,,,,#N/A
+Yemen,Not Free,13,#N/A,,,#N/A,,,,,#N/A
+Zambia,Partly Free,55,0.47,,,41.1,,,,,0.43
+Zimbabwe,Not Free,30,0.4,,,30.8,,,,,0.37
