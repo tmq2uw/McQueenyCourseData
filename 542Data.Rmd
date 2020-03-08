@@ -1,0 +1,211 @@
+```{r}
+link='https://github.com/tmq2uw/McQueenyRepo/raw/master/TEAMDATA.RDS'
+# a RDS file from the web needs:
+myFile=url(link)
+
+# reading in data:
+fromPy=readRDS(file = myFile)
+
+# reset indexes to R format:
+row.names(fromPy)=NULL
+```
+```{r}
+names(fromPy)
+```
+```{r}
+str(fromPy[,c(2,3,4)])
+```
+
+
+```{r}
+dfClus1=fromPy[,c(2,3,4)]
+```
+```{r}
+row.names(dfClus1)=fromPy$Country
+head(dfClus1)
+```
+```{r}
+set.seed(999)
+```
+```{r}
+library(cluster)
+dfClus1_D=cluster::daisy(x=dfClus1,metric="gower")
+```
+```{r}
+NumCluster=4
+res.pam = pam(x=dfClus1_D,k = NumCluster,cluster.only = F)
+```
+```{r}
+fromPy$pam=as.factor(res.pam$clustering)
+
+```
+```{r}
+fromPy[fromPy$pam==1,'Country']
+
+```
+```{r}
+table(fromPy$pam)
+
+```
+```{r}
+library(factoextra)
+fviz_silhouette(res.pam)
+```
+```{r}
+pamEval=data.frame(res.pam$silinfo$widths)
+head(pamEval)
+```
+```{r}
+pamEval[pamEval$sil_width<0,]
+
+```
+```{r}
+library(factoextra)
+
+res.agnes= hcut(dfClus1_D, k = NumCluster,isdiss=T,
+                 hc_func='agnes',
+                 hc_method = "ward.D2")
+```
+
+```{r}
+fromPy$agn=as.factor(res.agnes$cluster)
+
+```
+```{r}
+table(fromPy$agn)
+
+```
+```{r}
+fviz_dend(res.agnes,k=NumCluster, cex = 0.7, horiz = T)
+
+```
+```{r}
+library(factoextra)
+fviz_silhouette(res.agnes)
+```
+```{r}
+agnEval=data.frame(res.agnes$silinfo$widths)
+head(agnEval)
+```
+```{r}
+agnEval[agnEval$sil_width<0,]
+
+```
+```{r}
+library(factoextra)
+
+res.diana= hcut(dfClus1_D, k = NumCluster,
+                 hc_func='diana',
+                 hc_method = "ward.D")
+
+```
+```{r}
+fromPy$dia=as.factor(res.diana$cluster)
+
+```
+```{r}
+table(fromPy$dia)
+
+```
+```{r}
+fviz_dend(res.diana,k=NumCluster, cex = 0.7, horiz = T)
+
+```
+```{r}
+library(factoextra)
+fviz_silhouette(res.diana)
+```
+```{r}
+diaEval=data.frame(res.diana$silinfo$widths)
+head(diaEval)
+```
+```{r}
+diaEval[diaEval$sil_width<0,]
+
+```
+```{r}
+library(dbscan)
+#minNeighs> num cols in data
+minNeighs=5
+kNNdistplot(dfClus1_D, k = minNeighs)
+abline(h=.03, col = "red", lty=2)
+```
+```{r}
+distance=0.05
+res.db = dbscan::dbscan(dfClus1_D, eps=distance, 
+                     minPts=minNeighs)
+```
+```{r}
+res.db
+```
+```{r}
+fromPy$db=as.factor(res.db$cluster)
+```
+```{r}
+projectedData = cmdscale(dfClus1_D, k=2)
+#
+# save coordinates to original data frame:
+fromPy$dim1 = projectedData[,1]
+fromPy$dim2 = projectedData[,2]
+```
+```{r}
+base= ggplot(data=fromPy,
+             aes(x=dim1, y=dim2,
+                 label=Country)) 
+base + geom_text(size=2)
+```
+```{r}
+pamPlot=base + labs(title = "PAM") + geom_point(size=2,
+                                              aes(color=pam),
+                                              show.legend = F)  
+```
+```{r}
+agnPlot=base + labs(title = "AGNES") + geom_point(size=2,
+                                              aes(color=agn),
+                                              show.legend = F) 
+```
+```{r}
+diaPlot=base + labs(title = "DIANA") + geom_point(size=2,
+                                              aes(color=dia),
+                                              show.legend = F) 
+```
+```{r}
+library(ggpubr)
+ggarrange(pamPlot, agnPlot, diaPlot,ncol = 3)
+```
+```{r}
+dbPlot= base + labs(title = "DBSCAN") + geom_point(aes(color=db),
+                                               show.legend = T) 
+dbPlot
+```
+```{r}
+library(ggrepel)
+dbPlot + geom_text_repel(size=3,aes(label=Country))
+```
+```{r}
+LABEL=ifelse(fromPy$db==0,fromPy$Country,"")
+
+dbPlot + geom_text_repel(aes(label=LABEL))
+```
+```{r}
+y<-lm(fromPy$GiiIndex2018 ~ fromPy$GDPpercapita*fromPy$PressFreedomScore)
+summary(y)
+
+```
+```{r}
+y<-lm(fromPy$PressFreedomScore ~ fromPy$GDPpercapita*fromPy$GiiIndex2018)
+summary(y)
+
+```
+```{r}
+y<-lm(fromPy$GiiIndex2018 ~ fromPy$PressFreedomScore*fromPy$GDPpercapita)
+summary(y)
+
+```
+```{r}
+y<-lm(log(fromPy$GDPpercapita) ~ fromPy$PressFreedomScore*fromPy$GiiIndex2018)
+summary(y)
+
+```
+
+
