@@ -1,0 +1,415 @@
+```{r}
+link='https://github.com/tmq2uw/McQueenyRepo/raw/master/TEAMDATA.RDS'
+# a RDS file from the web needs:
+myFile=url(link)
+
+# reading in data:
+fromPy=readRDS(file = myFile)
+
+
+# reset indexes to R format:
+row.names(fromPy)=NULL
+```
+```{r}
+names(fromPy) #check names
+```
+```{r}
+str(fromPy[,c(2,3,4)]) #check columns 2,3 and 4 
+```
+We studied the links and correlations among the economic development, press freedom and gender equality of countries around the globe. We use GDP per capita as the indicator to economic development of a country, and PFI (Press Freedom Index) and GII (Gender Inequality Index) to refer to the freedom level of press and how equal women and men are in a country respectively. 
+
+Press Freedom Index intends to reflect the degree of freedom that journalists, news organizations, and netizens have in each country, and the efforts made by authorities to respect this freedom. Note The lower the index is, the higher level of the press freedom is. Similarly, the GII measures the disparity between female and male achievements in three dimensions: reproductive health, empowerment and the labor market. So when GII is low, it means the disparity between genders is small
+
+Our research questions included:
+What role economics development plays in a country’s press and gender equality? 
+Does the impact of Press Freedom on Gender equality vary with GDP? 
+Does better freedom in press and higher GDP per capita mean better gender equality?
+How does gender equality and better economic development relate to the freedom of press?
+
+
+```{r}
+dfClus1=fromPy[,c(2,3,4)] #make a specific dataframe out of those columns
+```
+```{r}
+row.names(dfClus1)=fromPy$Country
+head(dfClus1) #checkhead
+```
+Our analysis set the number of classes equal to four because we found that the process of adding or subtracting classes lowered the average silhouette width; in other words, the fit seemed worse when we used three or five.
+
+```{r}
+set.seed(999) #create random simulations that can be reproduced
+```
+```{r}
+library(cluster)
+dfClus1_D=cluster::daisy(x=dfClus1,metric="gower") 
+```
+```{r}
+NumCluster=4 
+res.pam = pam(x=dfClus1_D,k = NumCluster,cluster.only = F)
+```
+```{r}
+fromPy$pam=as.factor(res.pam$clustering) #partition clustering
+
+```
+```{r}
+fromPy[fromPy$pam==1,'Country']
+
+```
+```{r}
+table(fromPy$pam)
+
+```
+```{r}
+library(factoextra)
+fviz_silhouette(res.pam) ##silhouette plot to check fit for partition clustering
+```
+```{r}
+pamEval=data.frame(res.pam$silinfo$widths)
+head(pamEval) #makes a table of the widths to see where countries fall
+```
+```{r}
+pamEval[pamEval$sil_width<0,] #identify the negative width values to see which countries don't fit the clustering model
+
+```
+```{r}
+library(factoextra)
+
+res.agnes= hcut(dfClus1_D, k = NumCluster,isdiss=T,
+                 hc_func='agnes',
+                 hc_method = "ward.D2") #steps for bottom-up agnes method
+```
+
+```{r}
+fromPy$agn=as.factor(res.agnes$cluster)
+
+```
+```{r}
+table(fromPy$agn)
+
+```
+```{r}
+fviz_dend(res.agnes,k=NumCluster, cex = 0.7, horiz = T) #creates agnes dendrogram
+
+```
+```{r}
+library(factoextra)
+fviz_silhouette(res.agnes) #checks the fit again but this time for agnes
+```
+```{r}
+agnEval=data.frame(res.agnes$silinfo$widths)
+head(agnEval) #repeats the steps made with other methods
+```
+```{r}
+agnEval[agnEval$sil_width<0,]
+
+```
+```{r}
+library(factoextra)
+
+res.diana= hcut(dfClus1_D, k = NumCluster,
+                 hc_func='diana',
+                 hc_method = "ward.D")
+
+```
+```{r}
+fromPy$dia=as.factor(res.diana$cluster)
+
+```
+```{r}
+table(fromPy$dia)
+
+```
+```{r}
+fviz_dend(res.diana,k=NumCluster, cex = 0.8, horiz = T)
+
+```
+Grouping countries together through any method naturally invites skepticism and caution. In this analysis, divisive analysis clustering, or DIANA, was chosen due to its silhouette width, or the commonly utilized instrument for evaluating the overall fit of the classification. Using the top-down approach of the DIANA method, with all observations starting as one cluster, the silhouette width value was .40, far higher than the values of other clustering methods, which hovered around .30 or less. The silhouette plot showed minimal negative values in groups one and three in our DIANA method. 
+
+
+
+```{r}
+library(factoextra)
+fviz_silhouette(res.diana) 
+```
+
+The countries included in the first group, marked in red on our dendrogram, are places like Norway, Finland, Sweden; typically richer Western countries with social democratic leanings. The only countries in this category that weren’t traditionally Western associated were Qatar and Singapore
+
+```{r}
+diaEval=data.frame(res.diana$silinfo$widths)
+head(diaEval)
+
+
+```
+```{r}
+diaEval[diaEval$sil_width<0,]
+
+```
+```{r}
+library(dbscan)
+#minNeighs> num cols in data
+minNeighs=5
+kNNdistplot(dfClus1_D, k = minNeighs)
+abline(h=.07, col = "red", lty=2) #setting threshold 
+```
+```{r}
+distance=0.10
+res.db = dbscan::dbscan(dfClus1_D, eps=distance, 
+                     minPts=minNeighs)
+```
+```{r}
+res.db
+```
+```{r}
+fromPy$db=as.factor(res.db$cluster)
+```
+```{r}
+projectedData = cmdscale(dfClus1_D, k=2)
+#
+# save coordinates to original data frame:
+fromPy$dim1 = projectedData[,1]
+fromPy$dim2 = projectedData[,2]
+```
+```{r}
+base= ggplot(data=fromPy,
+             aes(x=dim1, y=dim2,
+                 label=Country)) 
+base + geom_text(size=1.5) #dimensionality reduction for our countreis and variables
+```
+As demonstrated by our DIANA method dimensionality reduction graph, Singapore and Qatar were the only countries outside of the dense grouping from group one. At least for Singapore, we believe it does so well in both GDP and GII index values that it gets grouped into group one despite a terrible press freedom score. We suspect this is the case for other extreme outliers; that high values in one variable, most frequently GDP, skew the clustering algorithm to include a given country despite poor scores in other categories. Certainly, other extreme outliers like the United Arab Emirates, Saudi Arabia and China would seem to fit this description.   
+
+The second group had countries like Georgia, Mongolia, El Salvador and Tunisia and, generally, had much more geographic and political spread with far more outliers. Our third group had countries like Italy, France, the United Kingdom, Greece and countries associated with Western and Eastern Europe with notable outliers like the UAE. Many of the countries within this cluster were, interestingly, NATO member states. In the dimensionality reduction graph, this group was almost as dense as group one and located close to group one. Our fourth group had countries like Egypt, Saudi Arabia and China. We observed that the second and fourth group had many states in common with those that identified themselves as observers or members of the nonalignment movement of the Cold War surprisingly. As a result, we created the following names for defining the corresponding groups:
+
+1.	Social Democratic Leaning Countries for group one
+2.	Non-Aligned Developing Countries for group two
+3.	NATO Supportive Countries for group three
+4.	Non-Aligned Expression Restrictive Cou
+
+
+
+```{r}
+base= ggplot(data=fromPy,
+             aes(x=dim1, y=dim2,
+                 label=Country, color=dia))
+base + geom_text(size=1.5) #same as prior graph but color coded according to group
+
+
+
+```
+
+
+
+
+```{r}
+pamPlot=base + labs(title = "PAM") + geom_point(size=2,
+                                              aes(color=pam),
+                                              show.legend = F)  
+```
+```{r}
+agnPlot=base + labs(title = "AGNES") + geom_point(size=2,
+                                              aes(color=agn),
+                                              show.legend = F) 
+```
+```{r}
+diaPlot=base + labs(title = "DIANA") + geom_point(size=2,
+                                              aes(color=dia),
+                                              show.legend = F) 
+```
+```{r}
+library(ggpubr)
+ggarrange(pamPlot, agnPlot, diaPlot,ncol = 3) #compares different methods
+```
+```{r}
+dbPlot= base + labs(title = "DBSCAN") + geom_point(aes(color=db),
+                                               show.legend = T) 
+dbPlot #identifies extreme outliers
+```
+```{r}
+library(ggrepel)
+dbPlot + geom_text_repel(size=3,aes(label=Country))
+```
+```{r}
+LABEL=ifelse(fromPy$db==0,fromPy$Country,"")
+
+dbPlot + geom_text_repel(aes(label=LABEL))
+```
+The continuous variables are centered at their means. This is common in multiple regression models that use interaction terms between continuous variables. By centering, the main effects of an interaction term estimate the impact of an explanatory variable on the dependent variable while holding all other explanatory variables constant at their mean (instead of at zero, as is the case with non-centered data).All explanatory variables are centered in all regressions, and dependent variables are not centered.
+```{r}
+# Create mean-centered versions of three variables
+GII_scaled <- scale(fromPy$GiiIndex2018, scale=F)
+GDP_scaled <- scale(fromPy$GDPpercapita,scale=F)
+PF_scaled <- scale(fromPy$PressFreedomScore, scale = F)
+```
+### Regression Model 1 
+Gender Inequality Index as a function of the interaction between GDP per capita and Press Freedom along with their main effects.
+
+#### Hypothesis:
+Countries with more press freedom and higher GDP will have more gender equality. Richer countries will have a higher impact of Press Freedom on GII.
+
+#### Rationale:
+* Higher economic development as measured by GDP means more opportunities for women, lowering GII. (-)
+* More press freedom means more representation of women’s views  on media, increasing gender equality. (+)
+* Richer countries have more developed media infrastructure, allowing higher impact of PF on GII. (+)
+
+#### Assumptions:
+The residual plot show signs of heteroskedasticity, as the variance of the residuals increases along with the dependent variable values. As a result, the QQ plot shows a lot of deviation off the diagnol. However, the sharpiro tests yields a significant result, providing evidence for normality in residuals.
+
+#### Discussion:
+The interaction term coefficient is significant at the 10% level and is negative, contrary to the hypothesis. This means that as a country grows richer, the ability of freedom of the press to improve gender equality diminishes. Special interests could grow larger and more powerful as a country grows in wealth, and this would lead to less opportunities for women. The GDP coefficient is significant at the 5% level and is the predicted sign. The R-squared is about 54%, which is above Model 2 and below Model 3.  
+```{r}
+Gii_Model<-lm(fromPy$GiiIndex2018~GDP_scaled*PF_scaled )
+summary(Gii_Model)
+```
+
+```{r}
+shapiro.test(Gii_Model$residuals) # Test for normality of residuals
+par(mfrow = c(2, 2))
+plot(Gii_Model) # Show regression diagnostic plots
+```
+
+#### Within Cluster: 
+No significant results came were produced from running the model, centered and non-centered, in each of the clusters made by DIANA.
+```{r}
+# Model 1 in each of the four groups made by DIANA.
+# Group 1
+subset1 = subset(fromPy, fromPy$dia == 1)
+y1 = lm(subset1$GiiIndex2018 ~ subset1$GDPpercapita*subset1$PressFreedomScore, data = subset1)
+summary(y1)
+```
+
+```{r}
+# Group 2
+subset2 = subset(fromPy, fromPy$dia == 2)
+y2 = lm(subset2$GiiIndex2018 ~ subset2$GDPpercapita*subset2$PressFreedomScore, data = subset2)
+summary(y2)
+```
+
+```{r}
+# Group 3
+subset3 = subset(fromPy, fromPy$dia == 3)
+y3 = lm(subset3$GiiIndex2018 ~ subset3$GDPpercapita*subset3$PressFreedomScore, data = subset3)
+summary(y3)
+```
+
+```{r}
+# Group 4
+subset4 = subset(fromPy, fromPy$dia == 4)
+y4 = lm(subset4$GiiIndex2018 ~ subset4$GDPpercapita*subset4$PressFreedomScore, data = subset4)
+summary(y4)
+```
+### Regression Model 2 
+Press Freedom as a function of the interaction between GDP per capita and Gender Inequality Index along with their main effects.
+
+#### Hypothesis:
+Higher GDP and more gender equality leads to more press freedom. The impact of gender equality on press freedom will be greater for richer countries.
+
+#### Rationale:
+* Higher GDP means more opportunities for media firms to succeed. (-)
+* Greater gender equality leads to women being represented more in media, leading to more diverse opinions in media. (+)
+* Richer countries have more opportunities for women, leading to more representation in media, increasing press freedom. (+)
+
+
+#### Assumptions:
+The residual plot show signs of heteroskedasticity, as the variance of the residuals clump together at high values of Press Freedom. The QQ plot shows a lot of deviation off the diagnol, and the scale-location plot shows a distinct fanning out of residuals. The shapiro test did not yield a significant result, so there is evidence against homoskedasticity in the residuals.
+
+#### Discussion:
+The GDP coefficient is significant at the 5% level, yet the interaction term or GII coefficient are not. All three coefficients are the predicted sign. However, the R-squared is only 20%, which is the lowest explanatory power of the three models.
+```{r}
+PF_Model<-lm(fromPy$PressFreedomScore ~ fromPy$GDPpercapita*fromPy$GiiIndex2018)
+summary(PF_Model)
+```
+
+```{r}
+shapiro.test(PF_Model$residuals) # Test for normality of residuals
+par(mfrow = c(2, 2))
+plot(PF_Model) # Show regression diagnostic plots
+```
+
+#### Within Cluster:
+Running the model in Group 4 produced the only significant result. The interaction term coefficient is significant at the 10% level and negative, which is the opposite of the predicted sign. This indicates that as GDP grows, the impact of gender equality on press freedom diminishes. The GDP coefficient is significant at the 5% level and is the opposite sign predicted. Group 4 consists of mainly countries with low freedom of press and gender equality, which could mean the richer of these countries have less opportunities for women, worsening women representation in the press. The R-squared is only about 13%, so this model has poor explanatory power.
+```{r}
+# Group 1
+x1 = lm(subset1$PressFreedomScore ~ subset1$GDPpercapita*subset1$GiiIndex2018, data=subset1)
+summary(x1)
+```
+
+```{r}
+# Group 2 
+x2 = lm(subset2$PressFreedomScore ~ subset2$GDPpercapita*subset2$GiiIndex2018, data=subset2)
+summary(x2)
+```
+
+```{r}
+# Group 3
+x3 = lm(subset3$PressFreedomScore ~ subset3$GDPpercapita*subset3$GiiIndex2018, data=subset3)
+summary(x3)
+```
+
+```{r}
+# Group 4
+x4 = lm(subset4$PressFreedomScore ~ subset4$GDPpercapita*subset4$GiiIndex2018, data=subset4)
+summary(x4)
+```
+### Regression Model 3
+GDP per capita as a function of the interaction between Press Freedom and Gender Inequality Index along with their main effects.
+
+#### Hypothesis:
+Countries with higher Press Freedom and Gender Inequality Index will have less GDP per Capita than countries with lower PF and GII. The impact of Press Freedom on GDP is greater the more gender equality is present.
+
+#### Rationale:
+* Worse media infrastructure and freedom leads to less economic development via less foreign investment, less information for businesses to make decisions. (-)
+* More gender inequality means less opportunity for half the population, forgoing potential GDP. (-)
+* Countries with more gender equality have more women representation in media, which empowers women and leads to more opportunities for potential GDP. (+)
+
+#### Assumptions:
+The diagnostic plots looked poor for the model, as the residuals fan out and are not evenly distributed. The shapiro test was not significant, providing evidence that the residuals are not normal. This is probably due to the skewed distribution of GDP per capita, as there are a lot of low GDP countries compared to high GDP countries.
+Because of this, a natural log transformation was applied to GDP per capita to smoothen out the distribution. This resulted in an improvement of diagnostic plots, as the residual plots show a much more even distribution across GDP values and the shapiro test became significant, providing evidence for normality in the residuals.
+
+#### Discussion:
+Both transformed and non-transformed regression will be discussed. The non-transformed regression yielded all significant results at the 5% level, with all the predicted coefficient signs. This model has an R-squared of about 62%. The transformed regression yielded only significant results for the main effects, and has an R-squared of about 77%. The signs on the coefficients remained unchanged under the transformation. 
+```{r}
+GDP_Model<-lm(fromPy$GDPpercapita ~ PF_scaled*GII_scaled)
+summary(GDP_Model)
+```
+
+```{r}
+shapiro.test(GDP_Model$residuals) # Test for normality of residuals
+par(mfrow = c(2, 2))
+plot(GDP_Model)
+```
+
+```{r}
+# Natural log transformation of GDP per Capita model
+z<-lm(log(fromPy$GDPpercapita) ~ PF_scaled*GII_scaled)
+summary(z)
+```
+
+```{r}
+shapiro.test(z$residuals) # Test for normality of residuals
+par(mfrow = c(2, 2))
+plot(z)
+```
+
+#### Within Cluster:
+The transformed model in Group 3 is the only one to yield significant results. The GII coefficient is significant at the 10% level, and the predicted sign, with an R-squared of about 14%. Group 3 consists of mostly western european countries that are similar to Group 1. Countries in this group have similar impacts of GII on GDP per capita compared to all countries as a whole (since Model 3 used the whole data set). Both the transformed and non-transformed model was used in all groups, and the non-transformed model yielded no significant results.
+```{r}
+# Group 1
+z1 = lm(log(subset1$GDPpercapita) ~ subset1$PressFreedomScore*subset1$GiiIndex2018, data = subset1)
+summary(z1)
+````
+
+```{r}
+# Group 2
+z2 = lm(log(subset2$GDPpercapita) ~ subset2$PressFreedomScore*subset2$GiiIndex2018, data = subset2)
+summary(z2)
+````
+
+```{r}
+# Group 3
+z3 = lm(log(subset3$GDPpercapita) ~ subset3$PressFreedomScore*subset3$GiiIndex2018, data = subset3)
+summary(z3)
+````
+
+```{r}
+# Group 4
+z4 = lm(log(subset4$GDPpercapita) ~ subset4$PressFreedomScore*subset4$GiiIndex2018, data = subset4)
+summary(z4)
